@@ -1,5 +1,13 @@
 # APM RUM Agent 公網接入 SOP（ALB + ACM，ap-east-1）
 
+## 這份文件在做什麼
+
+給已經有 ELK、而且 APM Server 已在跑的環境，接上瀏覽器端的 RUM agent。Agent 沒有授權費。若瀏覽器在公網、APM Server 在內網，要另做一個 HTTPS 入口，這份文件記的就是這段；那台入口的 AWS 費用見 §8。
+
+它收集的是使用者**打開頁面**時的連線與載入耗時，不是登入帳號本身。瀏覽器把 DNS、TCP、TLS、文件下載、頁面處理各花多久送到 APM Server，Kibana 裡會多一筆類型為 `page-load` 的事務，也能看一段時間的延遲與次數。
+
+後端程式之間的呼叫、以及程式裡查資料庫、打 Redis 的耗時，用嵌在服務裡的 APM Agent。RUM 只看瀏覽器到頁面這一段，不取代 APM Agent。
+
 > **公開版**：主機名、IP、instance ID、帳號名已改成占位符。內部重建請用內部 SOP 的實際值。
 > **狀態**：2026-10-15 已拆除（ALB / Target Group / ACM / DNS / 測試頁均已移除）。本文為**留存**，日後要重啟前端 RUM 時照此重建。  
 > **驗證日期**：2026-10-14，Kibana 可見服務 `prod-apple-channel`、事務類型 `page-load`。  
