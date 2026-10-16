@@ -8,11 +8,6 @@
 
 後端程式之間的呼叫、以及程式裡查資料庫、打 Redis 的耗時，用嵌在服務裡的 APM Agent。RUM 只看瀏覽器到頁面這一段，不取代 APM Agent。
 
-> **公開版**：主機名、IP、instance ID、帳號名已改成占位符。內部重建請用內部 SOP 的實際值。
-> **狀態**：2026-10-15 已拆除（ALB / Target Group / ACM / DNS / 測試頁均已移除）。本文為**留存**，日後要重啟前端 RUM 時照此重建。  
-> **驗證日期**：2026-10-14，Kibana 可見服務 `prod-apple-channel`、事務類型 `page-load`。  
-> **前置**：ELK 叢集與 APM Server 已依內部建置手冊建好（APM Server 9.4.3，lka-01 / lka-02 的 `:8200`）。這份公開文件不含那份手冊。
-
 ---
 
 ## 目錄
